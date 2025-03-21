@@ -5,10 +5,17 @@ class Assets {
   static const String assetsIcBg = 'assets/ic_bg.webp';
   static const String assetsIcInstall = 'assets/ic_install.webp';
   static const String assetsIcLogo = 'assets/ic_logo.webp';
+  static const String assetsIcTikiAr = 'assets/ic_tiki_ar.webp';
   static const String assetsIcTikiEn = 'assets/ic_tiki_en.webp';
   static const String assetsIcTikiEn1 = 'assets/ic_tiki_en_1.webp';
   static const String assetsIcTikiEn2 = 'assets/ic_tiki_en_2.webp';
   static const String assetsIcTikiEn3 = 'assets/ic_tiki_en_3.webp';
   static const String assetsIcTikiEn4 = 'assets/ic_tiki_en_4.webp';
+  static const String assetsIcTikiEs = 'assets/ic_tiki_es.webp';
+  static const String assetsIcTikiId = 'assets/ic_tiki_id.webp';
+  static const String assetsIcTikiPt = 'assets/ic_tiki_pt.webp';
+  static const String assetsIcTikiTh = 'assets/ic_tiki_th.webp';
+  static const String assetsIcTikiTr = 'assets/ic_tiki_tr.webp';
+  static const String assetsIcTikiVi = 'assets/ic_tiki_vi.webp';
 
 }

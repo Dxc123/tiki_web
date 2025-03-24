@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
 import 'generated/l10n.dart';
-
+// web打包：flutter build web --release
 void main() {
   runApp(
     ScreenUtilInit(

@@ -21,25 +21,26 @@ class _HomeViewState extends State<HomeView> {
   final String appleStoreUrl = "itms-apps://itunes.apple.com/app/id${AppConstants.appleStoreId}";
 
   void _launchURL() async {
-
-    if (GetPlatform.isIOS) {
-      if (await canLaunchUrl(Uri.parse(appleStoreUrl))) {
-        await launchUrl(Uri.parse(appleStoreUrl));
-      } else {
-        throw 'Could not launch $appleStoreUrl';
-      }
-    } else if (GetPlatform.isAndroid) {
-      if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
-        await launchUrl(Uri.parse(playStoreUrl));
-      } else {
-        throw 'Could not launch $playStoreUrl';
-      }
-    }else {
-      if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
-        await launchUrl(Uri.parse(playStoreUrl));
-      } else {
-        throw 'Could not launch $playStoreUrl';
-      }
+    // if (GetPlatform.isIOS) {
+    //   if (await canLaunchUrl(Uri.parse(appleStoreUrl))) {
+    //     await launchUrl(Uri.parse(appleStoreUrl));
+    //   } else {
+    //     throw 'Could not launch $appleStoreUrl';
+    //   }
+    // } else if (GetPlatform.isAndroid) {
+    //   if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
+    //     await launchUrl(Uri.parse(playStoreUrl));
+    //   } else {
+    //     throw 'Could not launch $playStoreUrl';
+    //   }
+    // }else {
+    //
+    // }
+    // 只有安卓
+    if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
+      await launchUrl(Uri.parse(playStoreUrl));
+    } else {
+      throw 'Could not launch $playStoreUrl';
     }
 
   }
@@ -47,10 +48,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    // //监听event
-    // window.addEventListener("mousedown", (event) => {
-    //   //do something
-    // });
   }
 
   @override
@@ -122,46 +119,47 @@ class _HomeViewState extends State<HomeView> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        if (GetPlatform.isIOS)
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.apple,
-                                                size: 30,
-                                                color: Colors.white,
-                                              ),
-                                              const SizedBox(width: 5),
-                                              Text(
-                                                "iOS",
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        else if (GetPlatform.isAndroid)
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.android,
-                                                size: 30,
-                                                color: Colors.white,
-                                              ),
-                                              const SizedBox(width: 5),
-                                              Text(
-                                                "Android",
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        else
-                                          Row(
+                                        // if (GetPlatform.isIOS)
+                                        //   Row(
+                                        //     children: [
+                                        //       Icon(
+                                        //         Icons.apple,
+                                        //         size: 30,
+                                        //         color: Colors.white,
+                                        //       ),
+                                        //       const SizedBox(width: 5),
+                                        //       Text(
+                                        //         "iOS",
+                                        //         style: TextStyle(
+                                        //           fontSize: 20,
+                                        //           color: Colors.white,
+                                        //           fontWeight: FontWeight.bold,
+                                        //         ),
+                                        //       ),
+                                        //     ],
+                                        //   )
+                                        // else if (GetPlatform.isAndroid)
+                                        //   Row(
+                                        //     children: [
+                                        //       Icon(
+                                        //         Icons.android,
+                                        //         size: 30,
+                                        //         color: Colors.white,
+                                        //       ),
+                                        //       const SizedBox(width: 5),
+                                        //       Text(
+                                        //         "Android",
+                                        //         style: TextStyle(
+                                        //           fontSize: 20,
+                                        //           color: Colors.white,
+                                        //           fontWeight: FontWeight.bold,
+                                        //         ),
+                                        //       ),
+                                        //     ],
+                                        //   )
+                                        // else
+                                        // 只有安卓
+                                        Row(
                                             children: [
                                               Icon(
                                                 Icons.android,
@@ -358,59 +356,67 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: Container(
-                    height: 100,
-                    alignment: AlignmentDirectional.center,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsetsDirectional.symmetric(horizontal: 20),
-                    child: InkWell(
-                      onTap: _launchURL,
-                      child: Container(
-                        height: 80,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(color: Colors.white, width: 1),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFFF3BA0),
-                                Color(0xFFFF547B),
-                              ],
-                              begin: AlignmentDirectional.centerStart,
-                              end: AlignmentDirectional.centerEnd,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xFFFF8E2D).withOpacity(0.3),
-                                offset: Offset(0, 4),
-                                blurRadius: 10,
-                              )
-                            ]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "assets/ic_install.webp",
-                              fit: BoxFit.cover,
-                            ),
-                            const SizedBox(width: 10),
-                            Text(
-                              S.current.install,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  child:  SizedBox(height: 100),
                 )
+
               ],
             ),
+
+            PositionedDirectional(
+              start: 0,
+              end: 0,
+              bottom: 0,
+              child: Container(
+                height: 100,
+                alignment: AlignmentDirectional.center,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+                child: InkWell(
+                  onTap: _launchURL,
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        border: Border.all(color: Colors.white, width: 1),
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFFFF3BA0),
+                            Color(0xFFFF547B),
+                          ],
+                          begin: AlignmentDirectional.centerStart,
+                          end: AlignmentDirectional.centerEnd,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0xFFFF8E2D).withOpacity(0.3),
+                            offset: Offset(0, 4),
+                            blurRadius: 10,
+                          )
+                        ]),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/ic_install.webp",
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          S.current.install,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
